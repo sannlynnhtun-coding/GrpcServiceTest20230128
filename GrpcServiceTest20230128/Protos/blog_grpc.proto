@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServiceTest20230128";
+
+package blog;
+
+service Blog{
+	rpc GetBlogs(BlogPageGrpcRequest) returns (BlogGrpcReply);
+	rpc GetBlogsByPage(BlogPageGrpcRequest) returns (BlogGrpcReply);
+}
+
+message BlogPageGrpcRequest{
+	int32 pageNo = 1;
+	int32 rowCount = 2;
+}
+
+message BlogGrpcReply {
+  repeated BlogItemGrpcReply blog= 1;
+}
+
+message BlogItemGrpcReply {
+  int32 blogId = 1;
+  string blogTitle=2;
+  string blogAuthor=3;
+  string blogContent=4;
+}
